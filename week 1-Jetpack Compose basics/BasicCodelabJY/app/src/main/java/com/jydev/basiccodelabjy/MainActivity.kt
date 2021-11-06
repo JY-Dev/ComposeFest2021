@@ -24,74 +24,11 @@ class MainActivity : ComponentActivity() {
             BasicCodelabJYTheme {
                 MyApp()
             }
-
         }
     }
 }
 
-@Composable
-private fun MyApp(names: List<String> = listOf("Jaeyoung", "Kim")) {
-    Surface(color = MaterialTheme.colors.background) {
-        Column {
-            for (name in names) {
-                Greeting(name = name)
-            }
-        }
-    }
-}
 
-@Composable
-private fun Greeting(name: String) {
-    val expanded = remember {
-        mutableStateOf(false)
-    }
-    val explainHeight = if(expanded.value) 48.dp else 0.dp
-    Surface(
-        color = Color.Black,
-        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
-    ) {
-        Column {
-            Row(modifier = Modifier.padding(24.dp), verticalAlignment = Alignment.CenterVertically) {
-                HelloTextColumn(name = name, modifier = Modifier.weight(1f))
-                ShowMoreButton(expanded)
-            }
-            Box(modifier = Modifier.height(explainHeight))
-        }
-    }
-}
-
-@Composable
-private fun HelloTextColumn(name : String , modifier: Modifier){
-    Column(
-        modifier = modifier
-    ) {
-        WhiteTextView(text = "Hello")
-        WhiteTextView(text = name)
-    }
-}
-
-@Composable
-private fun ShowMoreButton(mutableState: MutableState<Boolean>){
-    OutlinedButton(
-        onClick = { mutableState.value = !mutableState.value },
-        colors = ButtonDefaults.outlinedButtonColors(
-            backgroundColor = Color.Yellow,
-            contentColor = Color.Black
-        ),
-    ) {
-        BlackTextView(text = if(mutableState.value) "Show less" else "Show More")
-    }
-}
-
-@Composable
-private fun WhiteTextView(text: String) {
-    Text(color = Color.White, text = text)
-}
-
-@Composable
-private fun BlackTextView(text: String) {
-    Text(color = Color.Black, text = text)
-}
 
 @Preview(showBackground = true)
 @Composable
